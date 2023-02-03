@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.elephantstudio.partymaker.adapters.PartyListAdapter
+import com.elephantstudio.partymaker.data.Party
 import com.elephantstudio.partymaker.databinding.FragmentPartylistBinding
 
 
@@ -12,6 +15,7 @@ class PartyListFragment : Fragment() {
 
     private var _binding: FragmentPartylistBinding? = null
     private val binding get() = _binding!!
+    private lateinit var partyListAdapter: PartyListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,6 +23,10 @@ class PartyListFragment : Fragment() {
     ): View {
 
         _binding = FragmentPartylistBinding.inflate(inflater, container, false)
+
+        setupRecyclerView()
+
+
         return binding.root
 
     }
@@ -32,5 +40,25 @@ class PartyListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setupRecyclerView() {
+
+        val partyList = listOf<Party>(
+            Party(
+                "Impreza u Czara",
+                "20/05/2023"
+            ),
+            Party(
+                "Impreza u Dawida",
+                "17/11/2023"
+            )
+        )
+
+        binding.rvParties.apply {
+            partyListAdapter = PartyListAdapter(partyList)
+            adapter = partyListAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
     }
 }
