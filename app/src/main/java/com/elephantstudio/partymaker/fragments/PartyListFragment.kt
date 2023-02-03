@@ -5,13 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.elephantstudio.partymaker.R
-import com.elephantstudio.partymaker.databinding.FragmentSecondBinding
+import com.elephantstudio.partymaker.databinding.FragmentPartylistBinding
 
-class SecondFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+class PartyListFragment : Fragment() {
+
+    private var _binding: FragmentPartylistBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -19,7 +18,7 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentPartylistBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -27,9 +26,7 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-        }
+
     }
 
     override fun onDestroyView() {
