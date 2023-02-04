@@ -47,11 +47,11 @@ class PartyListFragment : Fragment() {
         val partyList = listOf<Party>(
             Party(
                 "Impreza u Czara",
-                "20/05/2023"
+                "20/05/2023   18:00"
             ),
             Party(
                 "Impreza u Dawida",
-                "17/11/2023"
+                "17/11/2023   19:00"
             )
         )
 
