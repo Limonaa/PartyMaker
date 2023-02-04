@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/mainActivity">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.elephantstudio.partymaker.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/partyListFragment"
+        android:name="com.elephantstudio.partymaker.fragments.PartyListFragment"
+        android:label="fragment_partylist"
+        tools:layout="@layout/fragment_partylist" />
+    <fragment
+        android:id="@+id/partyFragment"
+        android:name="com.elephantstudio.partymaker.fragments.PartyFragment"
+        android:label="fragment_party"
+        tools:layout="@layout/fragment_party" />
+</navigation>
