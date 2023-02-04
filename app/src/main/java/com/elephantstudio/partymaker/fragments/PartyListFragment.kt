@@ -44,7 +44,7 @@ class PartyListFragment : Fragment() {
 
     private fun setupRecyclerView() {
 
-        val partyList = listOf<Party>(
+        val partyList = listOf(
             Party(
                 "Impreza u Czara",
                 "20/05/2023   18:00"
