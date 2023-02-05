@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.PartyFragment"
+    android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
+                style="?attr/collapsingToolbarLayoutLargeStyle"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:contentScrim="@android:color/transparent"
+                android:fitsSystemWindows="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/gradient_transparent_background"
+                    android:background="@drawable/gawron"/>
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    style="@style/Widget.Material3.CollapsingToolbar"
+                    android:background="@android:color/transparent"
+                    app:title="Grill u Gawrona"
+                    app:subtitle="Piątek, 29 lipca 2023, 18:00"
+                    app:layout_collapseMode="pin"
+                    android:fitsSystemWindows="true"/>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvPartyDescription"
+                    style="@style/Widget.Material3.CardView.Filled"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardBackgroundColor="@color/surface_1"
+                    app:cardCornerRadius="22dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="110dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:text="@string/lorem_ipsum"
+                            android:maxLines="6"
+                            android:ellipsize="end"
+                            android:lineHeight="18dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:menu="@menu/bottom_menu" />-->
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
