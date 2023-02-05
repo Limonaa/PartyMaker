@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.PartyFragment"
-    android:fitsSystemWindows="true">
+    tools:context=".fragments.PartyFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -18,14 +17,13 @@
                 android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
                 style="?attr/collapsingToolbarLayoutLargeStyle"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:contentScrim="@android:color/transparent"
-                android:fitsSystemWindows="true">
+                app:contentScrim="@android:color/transparent">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
+                    android:fitsSystemWindows="true"
                     android:src="@drawable/gradient_transparent_background"
                     android:background="@drawable/gawron"/>
 
@@ -37,7 +35,7 @@
                     app:title="Grill u Gawrona"
                     app:subtitle="Piątek, 29 lipca 2023, 18:00"
                     app:layout_collapseMode="pin"
-                    android:fitsSystemWindows="true"/>
+                    app:navigationIcon="@drawable/ic_baseline_home_24"/>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -79,8 +77,9 @@
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="16dp"
                             android:ellipsize="end"
-                            android:maxLines="6"
-                            android:text="dddd"
+                            android:maxLines="5"
+                            android:text="@string/lorem_ipsum"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -126,7 +125,7 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:text="Witaszyce, Piaskowa 8c"
-                            android:textStyle="bold"
+                            android:textAppearance="?attr/textAppearanceBodyLarge"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -139,6 +138,8 @@
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="16dp"
                             android:text="Lokalizacja"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -148,6 +149,47 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvPeopleList"
+                    style="@style/Widget.Material3.CardView.Filled"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardBackgroundColor="@color/surface_1"
+                    app:cardCornerRadius="22dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvPartyLocalisation">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvPeopleList"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="t\nt\nt\nt\nt\nt\nt\nt\n"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvPeopleList" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
