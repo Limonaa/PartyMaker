@@ -20,4 +20,8 @@
         android:name="com.elephantstudio.partymaker.fragments.PartyFragment"
         android:label="fragment_party"
         tools:layout="@layout/fragment_party" />
+    <fragment
+        android:id="@+id/peopleListFragment2"
+        android:name="com.elephantstudio.partymaker.fragments.PeopleListFragment"
+        android:label="PeopleListFragment" />
 </navigation>
