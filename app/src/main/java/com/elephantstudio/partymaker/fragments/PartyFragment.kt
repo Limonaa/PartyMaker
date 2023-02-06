@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.elephantstudio.partymaker.adapters.PeopleListAdapter
 import com.elephantstudio.partymaker.data.Person
@@ -54,20 +55,12 @@ class PartyFragment : Fragment() {
                 "Marcin Musiała",
                 null
             ),
-            Person(
-                "Marcel Świtoński",
-                null
-            ),
-            Person(
-                "Filip Czaska",
-                null
-            ),
         )
 
-//        binding.rvPeopleList.apply {
-//            peopleListAdapter = PeopleListAdapter(peopleList)
-//            adapter = peopleListAdapter
-//            layoutManager = LinearLayoutManager(requireContext())
-//        }
+        binding.rvPeopleList.apply {
+            peopleListAdapter = PeopleListAdapter(peopleList)
+            adapter = peopleListAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
     }
 }
