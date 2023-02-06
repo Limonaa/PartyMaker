@@ -33,9 +33,16 @@
                     style="@style/Widget.Material3.CollapsingToolbar"
                     android:background="@android:color/transparent"
                     app:title="Grill u Gawrona"
-                    app:subtitle="Piątek, 29 lipca 2023, 18:00"
                     app:layout_collapseMode="pin"
                     app:navigationIcon="@drawable/ic_baseline_home_24"/>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_check_24"
+                    android:layout_gravity="end|bottom"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -51,7 +58,7 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cvPartyDescription"
+                    android:id="@+id/cvPartyDate"
                     style="@style/Widget.Material3.CardView.Filled"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -63,6 +70,73 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tvPartyDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:text="Czwartek"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvPartyDate2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="16dp"
+                            android:text="29 października 2023"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?android:attr/textColorSecondary"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvPartyDate" />
+
+                        <TextView
+                            android:id="@+id/tvPartyTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:text="18:00"
+                            android:textAppearance="?attr/textAppearanceTitleLarge"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+<!--                        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginEnd="16dp"-->
+<!--                            android:src="@drawable/ic_baseline_check_24"-->
+<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                            app:layout_constraintTop_toTopOf="parent" />-->
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvPartyDescription"
+                    style="@style/Widget.Material3.CardView.Filled"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardBackgroundColor="@color/surface_1"
+                    app:cardCornerRadius="22dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvPartyDate">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -180,16 +254,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
                 </com.google.android.material.card.MaterialCardView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="t\nt\nt\nt\nt\nt\nt\nt\n"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cvPeopleList" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
