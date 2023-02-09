@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/peopleListFragment">
+    app:startDestination="@id/shoppingListFragment">
 
     <fragment
         android:id="@+id/PartyListFragment"
@@ -30,4 +30,8 @@
         android:id="@+id/peopleListFragment"
         android:name="com.elephantstudio.partymaker.fragments.PeopleListFragment"
         android:label="PeopleListFragment" />
+    <fragment
+        android:id="@+id/shoppingListFragment"
+        android:name="com.elephantstudio.partymaker.fragments.ShoppingListFragment"
+        android:label="ShoppingListFragment" />
 </navigation>

@@ -43,7 +43,8 @@
                     android:src="@drawable/ic_baseline_check_24"
                     android:layout_gravity="end|bottom"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginBottom="8dp"
+                    android:contentDescription="Confirm arrival" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
