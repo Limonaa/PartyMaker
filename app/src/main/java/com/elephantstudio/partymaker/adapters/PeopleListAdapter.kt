@@ -24,9 +24,22 @@ class PeopleListAdapter(
             tvPersonName.text = peopleList[position].personName
             ivPersonImage.setImageDrawable(peopleList[position].personImage)
         }
+
+        //On item click listener
+        holder.binding.root.setOnClickListener{
+            onItemClickListener?.let {
+                it(peopleList[position])
+            }
+        }
     }
 
     override fun getItemCount(): Int {
         return peopleList.size
+    }
+
+    private var onItemClickListener: ((Person) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (Person) -> Unit) {
+        onItemClickListener = listener
     }
 }
