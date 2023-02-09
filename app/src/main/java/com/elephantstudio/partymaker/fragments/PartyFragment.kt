@@ -110,7 +110,7 @@ class PartyFragment : Fragment() {
         with(builder) {
             setTitle("Opis")
             setMessage(binding.tvPartyDescription.text)
-            setPositiveButton("OK") {dialog, which -> }
+            setPositiveButton("OK") { _, _ -> }
             show()
         }
     }

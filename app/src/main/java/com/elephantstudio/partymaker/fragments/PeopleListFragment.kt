@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.elephantstudio.partymaker.adapters.PeopleListAdapter
 import com.elephantstudio.partymaker.data.Person
 import com.elephantstudio.partymaker.databinding.FragmentPeopleListBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class PeopleListFragment : Fragment() {
 
@@ -31,6 +32,11 @@ class PeopleListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        peopleListAdapter.setOnItemClickListener {
+
+            showPersonInfoDialog(it)
+        }
 
     }
 
@@ -100,6 +106,17 @@ class PeopleListFragment : Fragment() {
             peopleListAdapter = PeopleListAdapter(peopleList)
             adapter = peopleListAdapter
             layoutManager = LinearLayoutManager(requireContext())
+        }
+
+    }
+    private fun showPersonInfoDialog(person: Person) {
+        val builder = MaterialAlertDialogBuilder(requireContext())
+        with(builder) {
+            setTitle(person.personName)
+            setMessage("Informacje o osobie np. Numer telefonu do BLIKA")
+            setPositiveButton("OK") { _, _ -> }
+            setNeutralButton("Zaczep") {_, _ -> }
+            show()
         }
     }
 }
