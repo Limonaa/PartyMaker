@@ -25,6 +25,7 @@ class PeopleListAdapter(
             ivPersonImage.setImageDrawable(peopleList[position].personImage)
         }
 
+        //On item click listener
         holder.binding.root.setOnClickListener{
             onItemClickListener?.let {
                 it(peopleList[position])
