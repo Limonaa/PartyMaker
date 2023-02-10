@@ -4,12 +4,14 @@
     <item
         android:id="@+id/partyFragment"
         android:title="Home"
-        android:icon="@drawable/ic_baseline_home_24"/>
+        android:icon="@drawable/ic_baseline_home_24"
+        android:enabled="true"/>
 
     <item
         android:id="@+id/peopleListFragment2"
         android:title="Group"
-        android:icon="@drawable/ic_baseline_group_24"/>
+        android:icon="@drawable/ic_baseline_group_24"
+        android:enabled="true"/>
 
     <item
 
