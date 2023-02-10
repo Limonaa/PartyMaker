@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/shoppingListFragment">
+    app:startDestination="@id/partyFragment">
 
     <fragment
         android:id="@+id/PartyListFragment"
@@ -11,27 +11,16 @@
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_partylist">
 
-        <action
-            android:id="@+id/action_PartyListFragment_to_PartyFragment"
-            app:destination="@id/PartyFragment" />
-    </fragment>
 
+        <action
+            android:id="@+id/action_PartyListFragment_to_partyFragment2"
+            app:destination="@id/partyFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/PartyFragment"
+        android:id="@+id/partyFragment"
         android:name="com.elephantstudio.partymaker.fragments.PartyFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_party">
+        android:label="fragment_party"
+        tools:layout="@layout/fragment_party" />
 
-        <action
-            android:id="@+id/action_PartyFragment_to_PartyListFragment"
-            app:destination="@id/PartyListFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/peopleListFragment"
-        android:name="com.elephantstudio.partymaker.fragments.PeopleListFragment"
-        android:label="PeopleListFragment" />
-    <fragment
-        android:id="@+id/shoppingListFragment"
-        android:name="com.elephantstudio.partymaker.fragments.ShoppingListFragment"
-        android:label="ShoppingListFragment" />
+
 </navigation>

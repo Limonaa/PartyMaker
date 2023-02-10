@@ -2,22 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/partyFragment"
+        android:id="@+id/homeFragment"
         android:title="Home"
-        android:icon="@drawable/ic_baseline_home_24"/>
+        android:icon="@drawable/ic_baseline_home_24"
+        android:enabled="true"/>
 
     <item
-        android:id="@+id/peopleListFragment2"
+        android:id="@+id/peopleListFragment"
         android:title="Group"
-        android:icon="@drawable/ic_baseline_group_24"/>
+        android:icon="@drawable/ic_baseline_group_24"
+        android:enabled="true"/>
 
-    <item
 
-        android:title="Shopping"
-        android:icon="@drawable/ic_baseline_shopping_cart_24"/>
-
-    <item
-
-        android:title="Chat"
-        android:icon="@drawable/ic_baseline_chat_24"/>
 </menu>
