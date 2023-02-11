@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.viewmodel.savedstate.R
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.elephantstudio.partymaker.adapters.PartyListAdapter
 import com.elephantstudio.partymaker.data.Party
@@ -25,7 +28,6 @@ class PartyListFragment : Fragment() {
         _binding = FragmentPartylistBinding.inflate(inflater, container, false)
 
         setupRecyclerView()
-
 
         return binding.root
 
