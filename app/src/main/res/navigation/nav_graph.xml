@@ -15,12 +15,23 @@
         <action
             android:id="@+id/action_PartyListFragment_to_partyFragment2"
             app:destination="@id/partyFragment" />
+        <action
+            android:id="@+id/action_PartyListFragment_self"
+            app:destination="@id/PartyListFragment" />
     </fragment>
     <fragment
         android:id="@+id/partyFragment"
         android:name="com.elephantstudio.partymaker.fragments.PartyFragment"
         android:label="fragment_party"
-        tools:layout="@layout/fragment_party" />
+        tools:layout="@layout/fragment_party" >
+        <action
+            android:id="@+id/action_partyFragment_to_peopleListFragment"
+            app:destination="@id/peopleListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/peopleListFragment"
+        android:name="com.elephantstudio.partymaker.fragments.PeopleListFragment"
+        android:label="PeopleListFragment" />
 
 
 </navigation>

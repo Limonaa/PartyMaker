@@ -1,5 +1,6 @@
 package com.elephantstudio.partymaker.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -17,12 +18,13 @@ class ShoppingListAdapter(
         return ShoppingListViewHolder(ItemShopArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ShoppingListViewHolder, position: Int) {
 
         holder.binding.apply {
             tvArticleName.text = shoppingList[position].articleName
             tvArticleBuyer.text = shoppingList[position].articleBuyer
-            tvArticlePrice.text = shoppingList[position].articlePrice.toString()
+            tvArticlePrice.text = "${shoppingList[position].articlePrice}PLN"
         }
     }
 

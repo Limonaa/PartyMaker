@@ -14,4 +14,8 @@
         android:id="@+id/peopleListFragment"
         android:name="com.elephantstudio.partymaker.fragments.PeopleListFragment"
         android:label="PeopleListFragment" />
+    <fragment
+        android:id="@+id/shoppingListFragment"
+        android:name="com.elephantstudio.partymaker.fragments.ShoppingListFragment"
+        android:label="ShoppingListFragment" />
 </navigation>
