@@ -3,21 +3,18 @@ package com.elephantstudio.partymaker.fragments
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.elephantstudio.partymaker.R
-import com.elephantstudio.partymaker.databinding.FragmentHomeBinding
 import com.elephantstudio.partymaker.databinding.FragmentPartyBinding
 
 class PartyFragment : Fragment() {
 
     private var _binding: FragmentPartyBinding? = null
     private val binding get() = _binding!!
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,4 +32,6 @@ class PartyFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }

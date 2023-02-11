@@ -23,8 +23,6 @@ class ShoppingListAdapter(
 
         holder.binding.apply {
             tvArticleName.text = shoppingList[position].articleName
-            tvArticleBuyer.text = shoppingList[position].articleBuyer
-            tvArticlePrice.text = "${shoppingList[position].articlePrice}PLN"
         }
     }
 

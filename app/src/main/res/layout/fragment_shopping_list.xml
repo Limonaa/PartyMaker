@@ -24,6 +24,17 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <TextView
+        android:id="@+id/tvItemsToBuy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Przedmioty do kupienia"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvShoppingList"
         android:layout_width="match_parent"
@@ -32,6 +43,17 @@
         android:layoutAnimation="@anim/recyclerview_animation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/tvItemsToBuy" />
+
+    <TextView
+        android:id="@+id/tvItemsBought"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Kupione przedmioty"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvShoppingList" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

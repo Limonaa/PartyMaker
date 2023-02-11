@@ -9,11 +9,17 @@
         android:id="@+id/homeFragment"
         android:name="com.elephantstudio.partymaker.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_peopleListFragment"
+            app:destination="@id/peopleListFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/peopleListFragment"
         android:name="com.elephantstudio.partymaker.fragments.PeopleListFragment"
         android:label="PeopleListFragment" />
+
     <fragment
         android:id="@+id/shoppingListFragment"
         android:name="com.elephantstudio.partymaker.fragments.ShoppingListFragment"
