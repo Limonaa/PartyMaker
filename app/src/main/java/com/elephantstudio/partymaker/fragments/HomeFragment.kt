@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.elephantstudio.partymaker.R
 import com.elephantstudio.partymaker.adapters.PeopleListAdapter
@@ -57,9 +57,8 @@ class HomeFragment : Fragment() {
         }
 
         binding.cvPeopleList.setOnClickListener {
-//            findNavController().navigate(R.id.action_homeFragment_to_peopleListFragment)
-////            NavigationUI.onNavDestinationSelected()
-            //TODO przejscie do fragmentu z lista osob
+            PartyFragment().setFragment()
+            //TODO zmiana na FragmentPeopleList
         }
 
         binding.materialToolbar.navigationIcon
