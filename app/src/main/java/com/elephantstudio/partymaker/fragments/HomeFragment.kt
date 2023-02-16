@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.cvPeopleList.setOnClickListener {
-            PartyFragment().setFragment()
+
             //TODO zmiana na FragmentPeopleList
         }
 
