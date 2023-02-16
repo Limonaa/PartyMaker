@@ -16,22 +16,23 @@
             android:id="@+id/action_PartyListFragment_to_partyFragment2"
             app:destination="@id/partyFragment" />
         <action
-            android:id="@+id/action_PartyListFragment_self"
-            app:destination="@id/PartyListFragment" />
+            android:id="@+id/action_PartyListFragment_to_newPartyFragment"
+            app:destination="@id/newPartyFragment" />
     </fragment>
     <fragment
         android:id="@+id/partyFragment"
         android:name="com.elephantstudio.partymaker.fragments.PartyFragment"
         android:label="fragment_party"
-        tools:layout="@layout/fragment_party" >
-        <action
-            android:id="@+id/action_partyFragment_to_peopleListFragment"
-            app:destination="@id/peopleListFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_party" />
     <fragment
-        android:id="@+id/peopleListFragment"
-        android:name="com.elephantstudio.partymaker.fragments.PeopleListFragment"
-        android:label="PeopleListFragment" />
+        android:id="@+id/newPartyFragment"
+        android:name="com.elephantstudio.partymaker.fragments.NewPartyFragment"
+        android:label="fragment_new_party"
+        tools:layout="@layout/fragment_new_party" >
+        <action
+            android:id="@+id/action_newPartyFragment_to_partyFragment"
+            app:destination="@id/partyFragment" />
+    </fragment>
 
 
 </navigation>

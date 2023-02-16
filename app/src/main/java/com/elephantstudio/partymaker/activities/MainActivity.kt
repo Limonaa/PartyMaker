@@ -1,4 +1,4 @@
-package com.elephantstudio.partymaker
+package com.elephantstudio.partymaker.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

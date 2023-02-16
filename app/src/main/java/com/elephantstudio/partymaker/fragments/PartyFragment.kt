@@ -3,12 +3,13 @@ package com.elephantstudio.partymaker.fragments
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.elephantstudio.partymaker.R
+import com.elephantstudio.partymaker.databinding.FragmentHomeBinding
 import com.elephantstudio.partymaker.databinding.FragmentPartyBinding
 
 class PartyFragment : Fragment() {
@@ -33,5 +34,7 @@ class PartyFragment : Fragment() {
         _binding = null
     }
 
+    fun setFragment(){
 
+    }
 }
