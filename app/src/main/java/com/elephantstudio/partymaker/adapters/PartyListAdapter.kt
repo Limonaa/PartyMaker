@@ -24,10 +24,22 @@ class PartyListAdapter(
             tvPartyName.text = partyList[position].partyName
             tvPartyDate.text = partyList[position].partyDate
         }
+
+        holder.binding.root.setOnClickListener {
+            onItemClickListener?.let {
+                it(partyList[position])
+            }
+        }
     }
 
     override fun getItemCount(): Int {
 
         return partyList.size
+    }
+
+    private var onItemClickListener: ((Party) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (Party) -> Unit) {
+        onItemClickListener = listener
     }
 }
