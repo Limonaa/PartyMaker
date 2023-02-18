@@ -1,26 +1,20 @@
 package com.elephantstudio.partymaker.fragments
 
-import android.app.ProgressDialog.show
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.elephantstudio.partymaker.R
-import com.elephantstudio.partymaker.databinding.FragmentHomeBinding
+import androidx.fragment.app.Fragment
 import com.elephantstudio.partymaker.databinding.FragmentNewPartyBinding
 import com.google.android.material.datepicker.MaterialDatePicker
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class NewPartyFragment : Fragment() {
 
     private var _binding: FragmentNewPartyBinding? = null
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,13 +29,29 @@ class NewPartyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnWhen.setOnClickListener{
-                val datePicker = MaterialDatePicker.Builder.datePicker()
-                    .setTitleText("Kiedy odbędzie się impreza?")
-                    .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-                    .build()
-                datePicker.show(parentFragmentManager, "PartyDate")
+        binding.tiPartyDate.setOnClickListener{
+                showCalendar()
         }
 
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun showCalendar() {
+
+        val datePicker = MaterialDatePicker.Builder.datePicker()
+            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .build()
+        datePicker.show(parentFragmentManager, "PartyDate")
+
+        datePicker.addOnPositiveButtonClickListener {
+            val dateFormatter = SimpleDateFormat("dd/MM/yyyy")
+            val date = dateFormatter.format(Date(it))
+            binding.tiPartyDate.setText(date)
+        }
+    }
+
 }

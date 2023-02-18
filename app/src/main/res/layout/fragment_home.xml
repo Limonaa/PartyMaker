@@ -227,16 +227,15 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvPlaylist"
                 style="@style/Widget.Material3.CardView.Filled"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
                 app:cardBackgroundColor="@color/surface_1"
                 app:cardCornerRadius="22dp"
-                app:layout_constraintBottom_toTopOf="@+id/cvPeopleList"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cvPartyLocalisation">
@@ -247,11 +246,9 @@
 
                     <ImageView
                         android:id="@+id/spotifyLogo"
-                        android:layout_width="50dp"
+                        android:layout_width="36dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
                         android:src="@drawable/spotify_logo"
@@ -260,17 +257,33 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        style="@style/TextAppearance.Material3.TitleLarge"
+                        android:id="@+id/textView"
+                        style="@style/TextAppearance.Material3.TitleMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nasza Playlista na Spotify"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Playlista Spotify"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/spotifyLogo"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
+
+<!--            <Button-->
+<!--                android:id="@+id/btnSpotify"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:text="Spotify"-->
+<!--                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/cvPartyLocalisation" />-->
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvPeopleList"
@@ -286,7 +299,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cvPartyLocalisation">
+                app:layout_constraintTop_toBottomOf="@+id/cvPlaylist">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

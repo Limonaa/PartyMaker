@@ -67,23 +67,6 @@ class PartyListFragment : Fragment() {
 
     private fun setupRecyclerView() = binding.rvParties.apply{
 
-//        val partyList = listOf(
-//            Party(
-//                "Impreza u Czara",
-//                "20/05/2023   18:00"
-//            ),
-//            Party(
-//                "Impreza u Dawida",
-//                "17/11/2023   19:00"
-//            )
-//        )
-//
-//        binding.rvParties.apply {
-//            partyListAdapter = PartyListAdapter(partyList)
-//            adapter = partyListAdapter
-//            layoutManager = LinearLayoutManager(requireContext())
-//        }
-
         viewLifecycleOwner.lifecycleScope.launch {
             newPartyViewModel.partyList.collect {
                 partyListAdapter = PartyListAdapter(it)
