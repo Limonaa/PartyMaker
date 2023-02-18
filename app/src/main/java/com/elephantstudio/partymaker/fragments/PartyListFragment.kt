@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewmodel.savedstate.R
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.elephantstudio.partymaker.R
 import com.elephantstudio.partymaker.adapters.PartyListAdapter
 import com.elephantstudio.partymaker.data.Party
 import com.elephantstudio.partymaker.databinding.FragmentPartylistBinding
@@ -45,12 +45,7 @@ class PartyListFragment : Fragment() {
 
 
         binding.fabAddParty.setOnClickListener {
-            //TODO go to create party fragment
-            newPartyViewModel.addParty(Party(
-                "Impreza u Czara",
-                "20/05/2023"
-            ))
-            partyListAdapter.notifyItemChanged(partyListAdapter.itemCount)
+            findNavController().navigate(R.id.newPartyFragment)
         }
 
         partyListAdapter.setOnItemClickListener {
@@ -66,23 +61,6 @@ class PartyListFragment : Fragment() {
     }
 
     private fun setupRecyclerView() = binding.rvParties.apply{
-
-//        val partyList = listOf(
-//            Party(
-//                "Impreza u Czara",
-//                "20/05/2023   18:00"
-//            ),
-//            Party(
-//                "Impreza u Dawida",
-//                "17/11/2023   19:00"
-//            )
-//        )
-//
-//        binding.rvParties.apply {
-//            partyListAdapter = PartyListAdapter(partyList)
-//            adapter = partyListAdapter
-//            layoutManager = LinearLayoutManager(requireContext())
-//        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             newPartyViewModel.partyList.collect {
