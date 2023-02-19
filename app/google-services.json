@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "659508472581",
+    "project_id": "partymaker-e4719",
+    "storage_bucket": "partymaker-e4719.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659508472581:android:0d4b4a8144e794b03da56c",
+        "android_client_info": {
+          "package_name": "com.elephantstudio.partymaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659508472581-4dq54ocdnhcgtulmsnuss9j6kkrj5hd0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6nHc_RsVRUw-7voLMnnfHZGnCFALTVng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659508472581-4dq54ocdnhcgtulmsnuss9j6kkrj5hd0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
