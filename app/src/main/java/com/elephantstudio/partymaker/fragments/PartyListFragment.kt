@@ -45,11 +45,6 @@ class PartyListFragment : Fragment() {
             findNavController().navigate(R.id.newPartyFragment)
         }
 
-//        partyListAdapter.setOnItemClickListener {
-//            //TODO add function to viewModel
-//            // selected party
-//        }
-
     }
 
     override fun onDestroyView() {

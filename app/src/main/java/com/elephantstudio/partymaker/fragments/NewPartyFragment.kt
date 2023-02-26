@@ -78,13 +78,17 @@ class NewPartyFragment : Fragment() {
             viewModel.addParty(Party(
                 null,
                 partyName = binding.tiPartyName.text.toString(),
-                partyDate = binding.tiPartyDate.text.toString()
-            //TODO add description
+                partyDate = binding.tiPartyDate.text.toString(),
+                partyDescription = binding.tiPartyDescription.text.toString(),
+                partyPlaylistLink = binding.tiSpotifyPlaylist.text.toString(),
+                isArrivalConfirmed = false,
             ))
             val partyMap = hashMapOf(
                 "partyName" to binding.tiPartyName.text.toString(),
                 "partyDate" to binding.tiPartyDate.text.toString(),
                 "partyDescription" to binding.tiPartyDescription.text.toString(),
+                "partySpotifyList" to binding.tiSpotifyPlaylist.text.toString(),
+                "isArrivalConfirmed" to false,
             )
             dataBase.collection("Parties").document(binding.tiPartyName.text.hashCode().toString()).set(partyMap)
             findNavController().navigate(R.id.PartyListFragment)

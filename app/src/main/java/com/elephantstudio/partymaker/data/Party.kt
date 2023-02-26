@@ -10,4 +10,8 @@ data class Party(
     var id: Int? = null,
     val partyName: String,
     val partyDate: String,
+    val partyDescription: String,
+    val partyPlaylistLink: String,
+    val isArrivalConfirmed: Boolean,
+
 )
