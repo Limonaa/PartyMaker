@@ -10,6 +10,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,15 +21,19 @@ import com.elephantstudio.partymaker.adapters.PeopleListAdapter
 import com.elephantstudio.partymaker.data.Party
 import com.elephantstudio.partymaker.data.Person
 import com.elephantstudio.partymaker.databinding.FragmentHomeBinding
+import com.elephantstudio.partymaker.viewmodels.MainViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.util.*
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var peopleListAdapter: PeopleListAdapter
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,7 +68,13 @@ class HomeFragment : Fragment() {
             //TODO zmiana na FragmentPeopleList
         }
 
-        binding.materialToolbar.navigationIcon
+        viewLifecycleOwner.lifecycleScope.launch{
+            viewModel.selectedParty.collect {
+                binding.materialToolbar.title = it?.partyName
+                binding.tvPartyDate.text = it?.partyDate
+                binding.tvPartyDescription.text = it?.partyDescription
+            }
+        }
 
     }
 

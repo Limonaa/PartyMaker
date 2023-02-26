@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.elephantstudio.partymaker.data.Party
 import com.elephantstudio.partymaker.repo.PartyRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,5 +21,11 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             repository.insertParty(party)
         }
+    }
+
+    private val _selectedParty = MutableStateFlow<Party?>(null)
+    val selectedParty: StateFlow<Party?> = _selectedParty
+    fun setSelectedParty(party: Party) {
+        _selectedParty.value = party
     }
 }
