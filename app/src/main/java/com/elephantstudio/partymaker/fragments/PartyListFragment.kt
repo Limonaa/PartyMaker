@@ -5,27 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.elephantstudio.partymaker.R
 import com.elephantstudio.partymaker.adapters.PartyListAdapter
-import com.elephantstudio.partymaker.data.Party
 import com.elephantstudio.partymaker.databinding.FragmentPartylistBinding
-import com.elephantstudio.partymaker.viewmodels.NewPartyViewModel
-import kotlinx.coroutines.flow.collect
+import com.elephantstudio.partymaker.viewmodels.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class PartyListFragment : Fragment() {
 
     private var _binding: FragmentPartylistBinding? = null
     private val binding get() = _binding!!
     private lateinit var partyListAdapter: PartyListAdapter
-    private val newPartyViewModel: NewPartyViewModel by activityViewModels()
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,10 +45,10 @@ class PartyListFragment : Fragment() {
             findNavController().navigate(R.id.newPartyFragment)
         }
 
-        partyListAdapter.setOnItemClickListener {
-            //TODO add function to viewModel
-            // selected party
-        }
+//        partyListAdapter.setOnItemClickListener {
+//            //TODO add function to viewModel
+//            // selected party
+//        }
 
     }
 
@@ -63,7 +60,7 @@ class PartyListFragment : Fragment() {
     private fun setupRecyclerView() = binding.rvParties.apply{
 
         viewLifecycleOwner.lifecycleScope.launch {
-            newPartyViewModel.partyList.collect {
+            viewModel.parties.collect {
                 partyListAdapter = PartyListAdapter(it)
                 adapter = partyListAdapter
                 layoutManager = LinearLayoutManager(requireContext())

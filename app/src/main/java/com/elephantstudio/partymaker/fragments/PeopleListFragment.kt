@@ -13,7 +13,9 @@ import com.elephantstudio.partymaker.adapters.PeopleListAdapter
 import com.elephantstudio.partymaker.data.Person
 import com.elephantstudio.partymaker.databinding.FragmentPeopleListBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PeopleListFragment : Fragment() {
 
     private var _binding: FragmentPeopleListBinding? = null

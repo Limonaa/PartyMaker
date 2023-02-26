@@ -34,7 +34,4 @@ class PartyFragment : Fragment() {
         _binding = null
     }
 
-    fun setFragment(){
-
-    }
 }
