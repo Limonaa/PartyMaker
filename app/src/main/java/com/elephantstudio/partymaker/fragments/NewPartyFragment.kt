@@ -46,14 +46,7 @@ class NewPartyFragment : Fragment() {
         }
 
         binding.fabAddParty.setOnClickListener {
-
             checkPartyRequirements()
-//            val partyMap = hashMapOf(
-//                "partyName" to binding.tiPartyName.text.toString(),
-//                "partyDate" to binding.tiPartyDate.text.toString(),
-//            )
-//
-//                dataBase.collection("parties").document("Impreza 1").set(partyMap)
         }
 
     }
@@ -86,7 +79,14 @@ class NewPartyFragment : Fragment() {
                 null,
                 partyName = binding.tiPartyName.text.toString(),
                 partyDate = binding.tiPartyDate.text.toString()
+            //TODO add description
             ))
+            val partyMap = hashMapOf(
+                "partyName" to binding.tiPartyName.text.toString(),
+                "partyDate" to binding.tiPartyDate.text.toString(),
+                "partyDescription" to binding.tiPartyDescription.text.toString(),
+            )
+            dataBase.collection("Parties").document(binding.tiPartyName.text.hashCode().toString()).set(partyMap)
             findNavController().navigate(R.id.PartyListFragment)
         }
     }

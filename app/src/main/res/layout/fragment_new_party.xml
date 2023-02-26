@@ -99,6 +99,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/partyDate">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiPartyDescription"
                     android:layout_width="match_parent"
                     android:layout_height="140dp"
                     android:textAppearance="@style/TextAppearance.Material3.BodyMedium"

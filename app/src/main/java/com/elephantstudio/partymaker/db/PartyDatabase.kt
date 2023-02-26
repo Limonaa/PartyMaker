@@ -11,6 +11,4 @@ import com.elephantstudio.partymaker.data.Party
 abstract class PartyDatabase: RoomDatabase() {
 
     abstract val dao: PartyDao
-
-
 }
