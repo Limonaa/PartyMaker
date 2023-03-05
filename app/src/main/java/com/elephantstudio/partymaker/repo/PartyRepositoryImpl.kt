@@ -8,6 +8,7 @@ class PartyRepositoryImpl(
     private val dao: PartyDao
 ): PartyRepository {
 
+    //ROOM DATABASE
     override suspend fun insertParty(party: Party) {
         dao.insertParty(party)
     }
@@ -22,5 +23,14 @@ class PartyRepositoryImpl(
 
     override fun getAllParties(): Flow<List<Party>> {
         return dao.getAllParties()
+    }
+
+    //FIRESTORE DATABASE
+    override suspend fun addPartyToFirestore(party: Party) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun deletePartyFromFirestore(party: Party) {
+        TODO("Not yet implemented")
     }
 }
