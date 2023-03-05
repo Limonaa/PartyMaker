@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.elephantstudio.partymaker.databinding.FragmentLoginBinding
+import com.elephantstudio.partymaker.databinding.FragmentRegisterBinding
 import com.elephantstudio.partymaker.viewmodels.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -20,9 +21,9 @@ import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class RegisterFragment : Fragment() {
 
-    private var _binding: FragmentLoginBinding? = null
+    private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by activityViewModels()
     private lateinit var auth: FirebaseAuth
@@ -32,7 +33,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
 
         auth = Firebase.auth
 
@@ -42,12 +43,11 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnLogin.setOnClickListener {
-            signIn()
-        }
-
         binding.btnRegister.setOnClickListener {
-            //TODO set register fragment
+            signUp()
+        }
+        binding.btnLogin.setOnClickListener {
+            //TODO set login fragment
         }
 
     }
@@ -55,18 +55,6 @@ class LoginFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun signIn() {
-        auth.signInWithEmailAndPassword(binding.etMail.text.toString(), binding.etPassword.text.toString()).addOnCompleteListener(requireActivity()) { task ->
-            if (task.isSuccessful) {
-                // Sign in success, update UI with the signed-in user's information
-                Toast.makeText(requireContext(), "Authentication successful", Toast.LENGTH_SHORT).show()
-            } else {
-                // If sign in fails, display a message to the user.
-                Toast.makeText(requireContext(), "Authentication failed.", Toast.LENGTH_SHORT).show()
-            }
-        }
     }
 
     private fun signUp() {
