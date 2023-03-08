@@ -2,8 +2,11 @@ package com.elephantstudio.partymaker.di
 
 import android.app.Application
 import androidx.room.Room
+import com.elephantstudio.partymaker.db.ArticleDatabase
 import com.elephantstudio.partymaker.db.PartyDao
 import com.elephantstudio.partymaker.db.PartyDatabase
+import com.elephantstudio.partymaker.repo.ArticleRepository
+import com.elephantstudio.partymaker.repo.ArticleRepositoryImpl
 import com.elephantstudio.partymaker.repo.PartyRepository
 import com.elephantstudio.partymaker.repo.PartyRepositoryImpl
 import dagger.Module
@@ -32,5 +35,23 @@ object AppModule {
     fun providePartyRepository(db: PartyDatabase): PartyRepository {
 
         return PartyRepositoryImpl(db.dao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideArticleDatabase(app: Application): ArticleDatabase{
+
+        return Room.databaseBuilder(
+            app,
+            ArticleDatabase::class.java,
+            "article_db"
+        ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideArticleRepository(db: ArticleDatabase): ArticleRepository{
+
+        return ArticleRepositoryImpl(db.dao)
     }
 }

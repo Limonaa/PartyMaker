@@ -1,7 +1,12 @@
 package com.elephantstudio.partymaker.data
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.google.firebase.firestore.DocumentSnapshot
+
+@Entity
 data class Article(
-    val articleName: String,
-    val articleBuyer: String,
-    val articlePrice: Int,
+    @PrimaryKey (autoGenerate = true)
+    var id: Int? = null,
+    val articleName: String
 )
