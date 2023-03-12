@@ -1,11 +1,16 @@
 package com.elephantstudio.partymaker.repo
 
 import com.elephantstudio.partymaker.data.Party
+import com.elephantstudio.partymaker.data.Resource
 import com.elephantstudio.partymaker.db.PartyDao
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class PartyRepositoryImpl(
-    private val dao: PartyDao
+class PartyRepositoryImpl @Inject constructor(
+    private val dao: PartyDao,
 ): PartyRepository {
 
     //ROOM DATABASE
@@ -25,12 +30,4 @@ class PartyRepositoryImpl(
         return dao.getAllParties()
     }
 
-    //FIRESTORE DATABASE
-    override suspend fun addPartyToFirestore(party: Party) {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun deletePartyFromFirestore(party: Party) {
-        TODO("Not yet implemented")
-    }
 }
