@@ -1,6 +1,8 @@
 package com.elephantstudio.partymaker.repo
 
 import com.elephantstudio.partymaker.data.Party
+import com.elephantstudio.partymaker.data.Resource
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.Flow
 
 interface PartyRepository {
@@ -14,8 +16,4 @@ interface PartyRepository {
 
     fun getAllParties(): Flow<List<Party>>
 
-    //FIRESTORE DATABASE
-    suspend fun addPartyToFirestore(party: Party)
-
-    suspend fun deletePartyFromFirestore(party: Party)
 }
