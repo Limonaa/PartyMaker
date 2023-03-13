@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.elephantstudio.partymaker.R
 import com.elephantstudio.partymaker.databinding.FragmentLoginBinding
 import com.elephantstudio.partymaker.databinding.FragmentRegisterBinding
 import com.elephantstudio.partymaker.viewmodels.MainViewModel
@@ -44,10 +46,10 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnRegister.setOnClickListener {
-            signUp()
+            viewModel.signupUser(binding.etName.text.toString(), binding.etMail.text.toString(), binding.etPassword.text.toString())
         }
         binding.btnLogin.setOnClickListener {
-            //TODO set login fragment
+            findNavController().navigate(R.id.loginFragment)
         }
 
     }
@@ -55,22 +57,6 @@ class RegisterFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun signUp() {
-        auth.createUserWithEmailAndPassword(binding.etMail.text.toString(), binding.etPassword.text.toString()).addOnCompleteListener(requireActivity()) { task ->
-            if (task.isSuccessful) {
-                // Sign in success,
-                Toast.makeText(requireContext(), "Authentication successful", Toast.LENGTH_SHORT).show()
-            } else {
-                // If sign in fails, display a message to the user.
-                Toast.makeText(requireContext(), "Authentication failed.",
-                    Toast.LENGTH_SHORT).show()
-            }
-        }
-            .addOnFailureListener {
-                Toast.makeText(requireContext(), "Error ${it.localizedMessage}", Toast.LENGTH_SHORT).show()
-            }
     }
 }
 

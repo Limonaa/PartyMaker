@@ -41,6 +41,27 @@
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Nazwa"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv1">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:maxLength="16"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiMail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,7 +71,7 @@
             android:hint="Email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv1">
+            app:layout_constraintTop_toBottomOf="@+id/tiName">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etMail"
