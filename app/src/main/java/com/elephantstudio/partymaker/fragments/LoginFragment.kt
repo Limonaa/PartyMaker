@@ -9,17 +9,25 @@ import android.view.ViewGroup
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.compose.runtime.collectAsState
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.elephantstudio.partymaker.R
+import com.elephantstudio.partymaker.data.Resource
 import com.elephantstudio.partymaker.databinding.FragmentLoginBinding
 import com.elephantstudio.partymaker.viewmodels.MainViewModel
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import java.lang.reflect.Modifier
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -45,7 +53,25 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnLogin.setOnClickListener {
-            signIn()
+            val loginFlow = viewModel.loginFlow.value
+            viewModel.loginUser(binding.etMail.text.toString(), binding.etPassword.text.toString())
+            lifecycleScope.launchWhenStarted() {
+                loginFlow?.let {
+                    when (it) {
+                        is Resource.Failure -> {
+                            Toast.makeText(requireContext(), "${it.exception.message}", Toast.LENGTH_LONG).show()
+                        }
+                        Resource.Loading -> {
+                            //TODO add progress bar
+                        }
+                        is Resource.Success -> {
+                            Toast.makeText(requireContext(), "Logged successfully", Toast.LENGTH_SHORT).show()
+                            findNavController().navigate(R.id.action_loginFragment_to_PartyListFragment)
+                        }
+
+                    }
+                }
+            }
         }
 
         binding.btnRegister.setOnClickListener {
@@ -57,34 +83,6 @@ class LoginFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun signIn() {
-        auth.signInWithEmailAndPassword(binding.etMail.text.toString(), binding.etPassword.text.toString()).addOnCompleteListener(requireActivity()) { task ->
-            if (task.isSuccessful) {
-                // Sign in success, update UI with the signed-in user's information
-                Toast.makeText(requireContext(), "Authentication successful", Toast.LENGTH_SHORT).show()
-            } else {
-                // If sign in fails, display a message to the user.
-                Toast.makeText(requireContext(), "Authentication failed.", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private fun signUp() {
-        auth.createUserWithEmailAndPassword(binding.etMail.text.toString(), binding.etPassword.text.toString()).addOnCompleteListener(requireActivity()) { task ->
-            if (task.isSuccessful) {
-                // Sign in success,
-                Toast.makeText(requireContext(), "Authentication successful", Toast.LENGTH_SHORT).show()
-            } else {
-                // If sign in fails, display a message to the user.
-                Toast.makeText(requireContext(), "Authentication failed.",
-                    Toast.LENGTH_SHORT).show()
-            }
-        }
-            .addOnFailureListener {
-                Toast.makeText(requireContext(), "Error ${it.localizedMessage}", Toast.LENGTH_SHORT).show()
-            }
     }
 }
 

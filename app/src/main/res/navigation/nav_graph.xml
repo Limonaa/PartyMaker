@@ -35,7 +35,11 @@
         android:id="@+id/loginFragment"
         android:name="com.elephantstudio.partymaker.fragments.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_PartyListFragment"
+            app:destination="@id/PartyListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.elephantstudio.partymaker.fragments.RegisterFragment"

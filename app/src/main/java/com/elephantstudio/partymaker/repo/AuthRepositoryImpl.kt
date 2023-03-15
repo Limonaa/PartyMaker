@@ -1,5 +1,6 @@
 package com.elephantstudio.partymaker.repo
 
+import android.accounts.AuthenticatorException
 import com.elephantstudio.partymaker.data.Resource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
