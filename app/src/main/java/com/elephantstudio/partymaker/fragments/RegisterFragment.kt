@@ -10,10 +10,13 @@ import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.elephantstudio.partymaker.R
+import com.elephantstudio.partymaker.data.Resource
 import com.elephantstudio.partymaker.databinding.FragmentLoginBinding
 import com.elephantstudio.partymaker.databinding.FragmentRegisterBinding
 import com.elephantstudio.partymaker.viewmodels.MainViewModel
@@ -21,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
@@ -46,11 +50,28 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnRegister.setOnClickListener {
+            val registerFlow = viewModel.signupFlow.value
             viewModel.signupUser(binding.etName.text.toString(), binding.etMail.text.toString(), binding.etPassword.text.toString())
+            registerFlow?.let {
+                when(it) {
+                    is Resource.Failure -> {
+                        Toast.makeText(requireContext(), "${it.exception.message}", Toast.LENGTH_LONG).show()
+                    }
+                    Resource.Loading -> {
+                        //TODO add progress bar
+                    }
+                    is Resource.Success -> {
+                        Toast.makeText(requireContext(), "Zarejestrowano pomyślnie", Toast.LENGTH_SHORT).show()
+//                        findNavController().navigate(R.id.action_loginFragment_to_PartyListFragment)
+                    }
+                }
+            }
+
         }
         binding.btnLogin.setOnClickListener {
             findNavController().navigate(R.id.loginFragment)
         }
+
 
     }
 
