@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.elephantstudio.partymaker.R
 import com.elephantstudio.partymaker.databinding.FragmentLoginBinding
 import com.elephantstudio.partymaker.viewmodels.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -47,7 +49,7 @@ class LoginFragment : Fragment() {
         }
 
         binding.btnRegister.setOnClickListener {
-            //TODO set register fragment
+            findNavController().navigate(R.id.registerFragment)
         }
 
     }
