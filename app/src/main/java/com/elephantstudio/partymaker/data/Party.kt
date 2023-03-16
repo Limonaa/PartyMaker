@@ -8,10 +8,10 @@ import androidx.room.PrimaryKey
 data class Party(
     @PrimaryKey (autoGenerate = true)
     var id: Int? = null,
-    val partyName: String,
-    val partyDate: String,
-    val partyDescription: String,
-    val partyPlaylistLink: String,
-    val isArrivalConfirmed: Boolean,
+    val partyName: String = "",
+    val partyDate: String = "",
+    val partyDescription: String = "",
+    val partyPlaylistLink: String = "",
+    val isArrivalConfirmed: Boolean = false,
 
 )

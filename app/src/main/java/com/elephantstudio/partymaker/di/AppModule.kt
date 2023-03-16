@@ -2,6 +2,7 @@ package com.elephantstudio.partymaker.di
 
 import android.app.Application
 import androidx.room.Room
+import com.elephantstudio.partymaker.db.FirestoreDatabase
 import com.elephantstudio.partymaker.db.PartyDao
 import com.elephantstudio.partymaker.db.PartyDatabase
 import com.elephantstudio.partymaker.repo.AuthRepository
@@ -32,9 +33,13 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providePartyRepository(db: PartyDatabase): PartyRepository {
-        return PartyRepositoryImpl(db.dao)
+    fun providePartyRepository(db: FirestoreDatabase ): PartyRepository {
+        return PartyRepositoryImpl(db)
     }
+
+    @Provides
+    @Singleton
+    fun provideFirestoreDatabase(): FirestoreDatabase = FirestoreDatabase()
 
     @Provides
     @Singleton

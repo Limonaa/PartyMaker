@@ -64,7 +64,7 @@ class RegisterFragment : Fragment() {
                         //TODO add progress bar
                     }
                     is Resource.Success -> {
-                        val userID = auth.currentUser?.uid
+                        val userID = viewModel.currentUser?.uid
                         val userMap = hashMapOf(
                             "name" to binding.etName.text.toString(),
                             "email" to binding.etMail.text.toString(),

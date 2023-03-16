@@ -4,9 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elephantstudio.partymaker.data.Party
 import com.elephantstudio.partymaker.data.Resource
+import com.elephantstudio.partymaker.data.User
 import com.elephantstudio.partymaker.repo.AuthRepository
 import com.elephantstudio.partymaker.repo.PartyRepository
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,10 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val partyRepository: PartyRepository,
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
 ) : ViewModel() {
-
-    val parties = partyRepository.getAllParties()
 
     fun addParty(party: Party) {
         viewModelScope.launch {
@@ -64,5 +65,14 @@ class MainViewModel @Inject constructor(
         authRepository.logout()
         _loginFlow.value = null
         _signupFlow.value = null
+    }
+
+    private val _userInfo = MutableStateFlow<Resource<User>?>(null)
+    val userInfo: StateFlow<Resource<User>?> = _userInfo
+    fun getUserInfo() {
+        _userInfo.value = Resource.Loading
+        viewModelScope.launch {
+            _userInfo.value = partyRepository.getUserInfo()
+        }
     }
 }
