@@ -65,7 +65,7 @@ class LoginFragment : Fragment() {
                             //TODO add progress bar
                         }
                         is Resource.Success -> {
-                            Toast.makeText(requireContext(), "Logged successfully", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "Zalogowano pomyślnie", Toast.LENGTH_SHORT).show()
                             findNavController().navigate(R.id.action_loginFragment_to_PartyListFragment)
                         }
 

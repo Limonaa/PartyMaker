@@ -16,12 +16,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.elephantstudio.partymaker.R
+import com.elephantstudio.partymaker.data.Party
 import com.elephantstudio.partymaker.data.Resource
 import com.elephantstudio.partymaker.databinding.FragmentLoginBinding
 import com.elephantstudio.partymaker.databinding.FragmentRegisterBinding
 import com.elephantstudio.partymaker.viewmodels.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -33,6 +35,7 @@ class RegisterFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by activityViewModels()
     private lateinit var auth: FirebaseAuth
+    private var db = Firebase.firestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,8 +64,41 @@ class RegisterFragment : Fragment() {
                         //TODO add progress bar
                     }
                     is Resource.Success -> {
-                        Toast.makeText(requireContext(), "Zarejestrowano pomyślnie", Toast.LENGTH_SHORT).show()
-//                        findNavController().navigate(R.id.action_loginFragment_to_PartyListFragment)
+                        val userID = viewModel.currentUser?.uid
+                        val userMap = hashMapOf(
+                            "name" to binding.etName.text.toString(),
+                            "email" to binding.etMail.text.toString(),
+                            "partyList" to listOf(
+                                Party(
+                                null,
+                                "Grill u gawrona",
+                                "18.06.2023 18:00",
+                                "Opis",
+                                "link/spotify",
+                                false
+                                ),
+                                Party(
+                                null,
+                                "Grill u gawrona",
+                                "18.06.2023 18:00",
+                                "Opis",
+                                "link/spotify",
+                                false
+                                )
+                            )
+
+                        //TODO do usuniecia "partyList" ^^^^^^
+                        )
+                        if (userID != null) {
+                            db.collection("Users").document(userID).set(userMap)
+                                .addOnCompleteListener {
+                                    Toast.makeText(requireContext(), "Zarejestrowano pomyślnie", Toast.LENGTH_SHORT).show()
+                                }
+                                .addOnFailureListener {
+                                    Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
+                                }
+                        }
+                        findNavController().navigate(R.id.action_registerFragment_to_PartyListFragment)
                     }
                 }
             }

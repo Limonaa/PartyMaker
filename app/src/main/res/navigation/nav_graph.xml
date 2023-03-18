@@ -43,7 +43,11 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.elephantstudio.partymaker.fragments.RegisterFragment"
-        android:label="RegisterFragment" />
+        android:label="RegisterFragment" >
+        <action
+            android:id="@+id/action_registerFragment_to_PartyListFragment"
+            app:destination="@id/PartyListFragment" />
+    </fragment>
 
 
 </navigation>

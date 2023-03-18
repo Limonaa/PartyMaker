@@ -19,7 +19,6 @@ class PartyListAdapter(
 
     override fun onBindViewHolder(holder: PartyListViewHolder, position: Int) {
 
-        //Przydzielanie danych do widoku kafelka w RecycerView
         holder.binding.apply {
             tvPartyName.text = partyList[position].partyName
             tvPartyDate.text = partyList[position].partyDate
