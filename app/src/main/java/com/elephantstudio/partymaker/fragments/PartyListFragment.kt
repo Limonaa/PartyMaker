@@ -5,14 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.elephantstudio.partymaker.R
 import com.elephantstudio.partymaker.adapters.PartyListAdapter
-import com.elephantstudio.partymaker.data.Resource
 import com.elephantstudio.partymaker.databinding.FragmentPartylistBinding
 import com.elephantstudio.partymaker.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,21 +54,6 @@ class PartyListFragment : Fragment() {
     }
 
     private fun setupRecyclerView() = binding.rvParties.apply{
-
-        viewModel.getUserInfo()
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.userInfo.collectLatest {
-                when(it) {
-                    is Resource.Failure -> {}
-                    Resource.Loading -> {}
-                    is Resource.Success -> {
-                        adapter = PartyListAdapter(it.result.partyList)
-                        layoutManager = LinearLayoutManager(requireContext())
-                    }
-                    null -> {}
-                }
-            }
-        }
 
     }
 }

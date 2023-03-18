@@ -1,15 +1,14 @@
 package com.elephantstudio.partymaker.viewmodels
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.elephantstudio.partymaker.data.AuthState
 import com.elephantstudio.partymaker.data.Party
-import com.elephantstudio.partymaker.data.Resource
-import com.elephantstudio.partymaker.data.User
 import com.elephantstudio.partymaker.repo.AuthRepository
 import com.elephantstudio.partymaker.repo.PartyRepository
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,8 +18,12 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val partyRepository: PartyRepository,
-    private val authRepository: AuthRepository,
+    private val authRepository: AuthRepository
 ) : ViewModel() {
+
+    init {
+        authenticate()
+    }
 
     fun addParty(party: Party) {
         viewModelScope.launch {
@@ -34,45 +37,30 @@ class MainViewModel @Inject constructor(
         _selectedParty.value = party
     }
 
-    private val _loginFlow = MutableStateFlow<Resource<FirebaseUser>?>(null)
-    val loginFlow: StateFlow<Resource<FirebaseUser>?> = _loginFlow
-
-    private val _signupFlow = MutableStateFlow<Resource<FirebaseUser>?>(null)
-    val signupFlow: StateFlow<Resource<FirebaseUser>?> = _signupFlow
-
-    val currentUser: FirebaseUser?
-        get() = authRepository.currentUser
-
-    init {
-        if (authRepository.currentUser != null) {
-            _loginFlow.value = Resource.Success(authRepository.currentUser!!)
-        }
-    }
-
-    fun loginUser(email: String, password: String) = viewModelScope.launch {
-        _loginFlow.value = Resource.Loading
-        val result = authRepository.login(email, password)
-        _loginFlow.value = result
-    }
-
-    fun signupUser(name: String, email: String, password: String) = viewModelScope.launch {
-        _signupFlow.value = Resource.Loading
-        val result = authRepository.signup(name, email, password)
-        _signupFlow.value = result
-    }
-
-    fun logout() {
-        authRepository.logout()
-        _loginFlow.value = null
-        _signupFlow.value = null
-    }
-
-    private val _userInfo = MutableStateFlow<Resource<User>?>(null)
-    val userInfo: StateFlow<Resource<User>?> = _userInfo
-    fun getUserInfo() {
-        _userInfo.value = Resource.Loading
+    fun signUp(username: String, password: String) {
         viewModelScope.launch {
-            _userInfo.value = partyRepository.getUserInfo()
+            val result = authRepository.signUp(
+                username = username,
+                password = password
+            )
         }
     }
+
+    fun signIn(username: String, password: String) {
+        viewModelScope.launch {
+            val result = authRepository.signIn(
+                username = username,
+                password = password
+            )
+        }
+    }
+
+    fun authenticate() {
+        viewModelScope.launch {
+            val result = authRepository.authenticate()
+        }
+    }
+
+
+
 }

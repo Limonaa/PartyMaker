@@ -1,41 +1,74 @@
 package com.elephantstudio.partymaker.repo
 
-import android.accounts.AuthenticatorException
-import com.elephantstudio.partymaker.data.Resource
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.UserProfileChangeRequest
-import javax.inject.Inject
+import android.content.SharedPreferences
+import com.elephantstudio.partymaker.auth.AuthApi
+import com.elephantstudio.partymaker.auth.AuthRequest
+import com.elephantstudio.partymaker.auth.AuthResult
+import retrofit2.HttpException
 
-class AuthRepositoryImpl @Inject constructor(
-    private val firebaseAuth: FirebaseAuth
+class AuthRepositoryImpl(
+    private val api: AuthApi,
+    private val prefs: SharedPreferences
 ): AuthRepository {
-
-    override val currentUser: FirebaseUser?
-        get() = firebaseAuth.currentUser
-
-    override suspend fun login(email: String, password: String): Resource<FirebaseUser> {
+    override suspend fun signUp(username: String, password: String): AuthResult<Unit> {
         return try {
-            val result = firebaseAuth.signInWithEmailAndPassword(email, password).await()
-            Resource.Success(result.user!!)
+            api.signUp(
+                request = AuthRequest(
+                    username = username,
+                    password = password
+                )
+            )
+            signIn(username, password)
+        } catch (e: HttpException){
+            if(e.code() == 401) {
+                AuthResult.Unauthorized()
+            }
+            else {
+                AuthResult.UnknownError()
+            }
         } catch (e: Exception) {
-            e.printStackTrace()
-            Resource.Failure(e)
+            AuthResult.UnknownError()
         }
     }
 
-    override suspend fun signup(name: String, email: String, password: String): Resource<FirebaseUser> {
+    override suspend fun signIn(username: String, password: String): AuthResult<Unit> {
         return try {
-            val result = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
-            result.user?.updateProfile(UserProfileChangeRequest.Builder().setDisplayName(name).build())?.await()
-            return Resource.Success(result.user!!)
+            val response = api.signIn(
+                request = AuthRequest(
+                    username = username,
+                    password = password
+                )
+            )
+            prefs.edit()
+                .putString("jwt", response.token)
+                .apply()
+            AuthResult.Authorized()
+        } catch (e: HttpException){
+            if(e.code() == 401) {
+                AuthResult.Unauthorized()
+            }
+            else {
+                AuthResult.UnknownError()
+            }
         } catch (e: Exception) {
-            e.printStackTrace()
-            Resource.Failure(e)
+            AuthResult.UnknownError()
         }
     }
 
-    override fun logout() {
-        firebaseAuth.signOut()
+    override suspend fun authenticate(): AuthResult<Unit> {
+        return try {
+            val token = prefs.getString("jwt", null) ?: return AuthResult.Unauthorized()
+            api.authenticate("Bearer $token")
+            AuthResult.Authorized()
+        } catch (e: HttpException){
+            if(e.code() == 401) {
+                AuthResult.Unauthorized()
+            }
+            else {
+                AuthResult.UnknownError()
+            }
+        } catch (e: Exception) {
+            AuthResult.UnknownError()
+        }
     }
 }

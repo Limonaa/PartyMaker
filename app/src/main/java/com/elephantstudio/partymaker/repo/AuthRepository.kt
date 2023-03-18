@@ -1,11 +1,12 @@
 package com.elephantstudio.partymaker.repo
 
-import com.elephantstudio.partymaker.data.Resource
-import com.google.firebase.auth.FirebaseUser
+import com.elephantstudio.partymaker.auth.AuthResult
 
 interface AuthRepository {
-    val currentUser: FirebaseUser?
-    suspend fun login(email: String, password: String): Resource<FirebaseUser>
-    suspend fun signup(name: String, email: String, password: String): Resource<FirebaseUser>
-    fun logout()
+
+    suspend fun signUp(username: String, password: String): AuthResult<Unit>
+
+    suspend fun signIn(username: String, password: String): AuthResult<Unit>
+
+    suspend fun authenticate(): AuthResult<Unit>
 }
